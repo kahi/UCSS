@@ -1,0 +1,560 @@
+/*
+CSS Document
+############
+
+Media: screen, presentation
+Tested in: (not really tested)
+Note: advanced-browsers-enhancement (MOSe) approach applied (IE6 therefore suffers)
+
+
+Global information
+******************
+
+Author: Peter Kahoun aka Kahi
+Author contact: kahi@kahi.cz; web: kahi.cz
+License: CC by-sa
+
+Created: 2009/04
+Modified: 
+Version: 2010.1
+
+
+Font-size table
+***************
+
+PX | from 94% (15px) | from 100% (16px)
+---------------------------------------
+27px | 180%
+24px | 160%
+21px | 140%
+18px | 120%
+17px | 113%
+16px | 107% | 100%
+15px | 100% | 94% 
+14px | 93%  | 88% 
+13px | 87%  | 81% 
+12px | 80%  | 75% 
+11px | 73%  | 69%
+10px | 67%  | 63% 
+9px  | 60%
+
+@see http://riddle.pl/emcalc/
+
+
+Color table (just main colors)
+***********
+
+13437e	darkest blue (links)
+365F91	dark blue (top headings)
+4F81BD	light blue (lower headings)
+e6f0fb 	lightest blue (inline code back, th)
+FF8700	orange
+
+*/
+
+
+	/* reset */
+
+body,
+dl, dt, dd, ul, ol, li,
+h1, h2, h3, h4, h5, h6,
+form, fieldset, legend,
+th, td, hr, pre, p, blockquote {margin:0; padding:0;}
+
+
+
+body {
+	max-width:45em; padding:2em;
+	font-family:Calibri, Arial, Helvetica, sans-serif; color:#222; font-size:94%;
+}
+
+
+p, ul, ol, dl, table, pre {
+	margin-bottom:1em;
+	line-height:1.4;
+}
+
+
+ 	/* headings */
+
+h1, h2, h3, h4, h5, h6 {
+	margin:1.66em 0 .66em; position:relative;
+	font-family:Cambria, Georgia, "New York CE", utopia, serif; color:#4F81BD; line-height:1;
+}
+
+h1, h2, h3, h4 {
+	clear:both;
+}
+
+h1 {
+	margin-top:0;
+	font-size:180%; color:#365F91;
+}
+
+h2 {
+	margin:2em 0 1em;
+ 	font-size:160%;  color:#365F91;
+}
+
+h3 {
+	font-size:140%;
+}
+
+h4 {
+	font-size:120%;
+}
+
+h5 {
+	font-size:107%;
+}
+
+h6 {
+	font-size:100%; font-style:italic; font-weight:normal;
+}
+
+h2:target, h3:target, h4:target, h5:target, h6:target {
+	color:#FF8700;
+}
+
+	h1 a.anchor, h2 a.anchor, h3 a.anchor, h4 a.anchor, h5 a.anchor, h6 a.anchor {
+		color:inherit; text-decoration:none;
+	}
+
+	h2 .bc, h3 .bc, h4 .bc, h5 .bc, h6 .bc {
+		visibility:hidden;
+		position:absolute; left:0; top:-20px;
+		padding:.2em;
+		background:#fff;
+		font-family:Calibri, Arial, Helvetica, sans-serif; font-size:13px; color:#999; font-weight:normal;
+	}
+
+		h2:hover .bc, h3:hover .bc, h4:hover .bc, h5:hover .bc, h6:hover .bc {
+			visibility:visible;
+		}
+
+
+	/* links */
+
+a {
+	color:#13437e;
+}
+
+a:hover {
+	text-decoration:none;
+}
+
+a:visited {
+	color:#4F81BD;
+}
+
+a:active {
+	background-color:#4F81BD;
+	color:#fff;
+}
+
+
+		/* links to specific file-types */
+
+a[href$='.zip'],
+a[href$='.rar'],
+a[href$='.7z'],
+a[href$='.gz'],
+a.type-archive {
+	padding-right:20px; margin-right:2px;
+	background:url(images/icons/compress.png) right center no-repeat;
+}
+
+a[href$='.pdf'],
+a.type-pdf {
+	padding-right:20px; margin-right:3px;
+	background:url(images/icons/page_white_acrobat.png) right center no-repeat;
+}
+
+a[href$='.jpg'],
+a[href$='.gif'],
+a[href$='.png'],
+a.type-image {
+	padding-right:20px; margin-right:3px;
+	background:url(images/icons/picture.png) right center no-repeat;
+}
+
+a[href$='.txt'],
+a.type-text {
+	padding-right:20px; margin-right:3px;
+	background:url(images/icons/page_white_text.png) right center no-repeat;
+}
+
+a[href$='.doc'],
+a[href$='.docx'],
+a[href$='.rtf'],
+a.type-richtext {
+	padding-right:20px; margin-right:3px;
+	background:url(images/icons/page_white_word.png) right center no-repeat;
+}
+
+a[href$='.xls'],
+a[href$='.xlsx'],
+a.type-table {
+	padding-right:20px; margin-right:3px;
+	background:url(images/icons/page_white_excel.png) right center no-repeat;
+}
+
+a[href$='.ppt'],
+a[href$='.pptx'],
+a.type-presentation {
+	padding-right:20px; margin-right:3px;
+	background:url(images/icons/page_white_powerpoint.png) right center no-repeat;
+}
+
+a[href^='mailto:'],
+a.email {
+	padding-right:20px; margin-right:3px;
+	background:url(images/icons/email.png) right center no-repeat;
+}
+
+/*
+p a[href^='#'] {
+	padding-right:20px; margin-right:3px;
+	background:url(images/icons/anchor.png) right top no-repeat;
+}
+*/
+
+a.linking-image, /* =by JS assigned class */
+a.no-type {
+	padding-right:0; margin-right:0;
+	background:url();
+}
+
+span[title], em[title], strong[title] {
+	border-bottom:1px dotted #666;
+	cursor:help;
+}
+
+
+ 		/* skip links */
+
+a#to-top {
+	position:fixed; top:0; right:0;
+	padding:15px;
+	/* background-color:rgba(255,255,255,0.8); */
+	/* text-shadow:0 0 5px #fff; */
+}
+
+
+	/* lists */
+
+ul, ol {
+	margin-left:0;
+	padding-left:3em;
+	list-style-position:outside;
+}
+
+dl dt {
+	margin:.5em 0 0 0;
+	font-weight:bold; font-style:italic; 
+}
+
+dl dd {
+	margin:0 0 .5em 3em;
+}
+
+
+	/* quotes */
+
+blockquote, q {
+	color:#444; font-style:italic;
+}
+
+blockquote {
+	margin:2em 0;
+	padding-left:2em;
+}
+
+cite {
+	font-style:italic;
+}
+
+blockquote + p cite:only-child {
+	display:block; margin:-1em 1em 2em 2em;
+	text-align:right;
+}
+
+	blockquote + p cite:only-child:before {
+		content:'— '
+	}
+
+
+	/* code */
+
+code,
+textarea.blockcode {
+	padding:1px;
+	background:#e6f0fb;
+	font-family:monospace;
+}
+
+pre code,
+textarea.blockcode {
+	display:block;
+	max-height:15em; padding:.5em; overflow-y:scroll; overflow:auto;
+	border:1px dashed #ccc;
+	background-color:transparent;
+}
+	
+textarea.blockcode {
+	height:10em; width:98%; /* might be js-overwritten */
+	font-size:73%;
+}
+
+code.block .select-all, 
+pre .select-all {
+	display:none;
+	position:absolute; top:5px; right:20px; font-size:73%;
+}
+	
+code.block:hover .select-all, 
+pre:hover .select-all {
+	display:block;
+}
+
+
+	/* tables */
+
+table {
+	border-collapse:collapse;
+}
+
+	th,
+	td {
+		padding:3px .5em;
+		border:1px solid #ddd;
+		text-align:left;
+	}
+
+	th {
+		background-color:#e6f0fb;
+		font-weight:bold;
+	}
+
+tfoot td,
+tfoot th {
+	border-top:1px solid #aaa;
+}
+
+tfoot td {
+	background-color:#f4f4f4;
+	font-weight:bold;
+}
+	
+	
+ 	/* images */
+
+.right,
+.figure-right {
+	float:right; margin:.5em 0 .5em 1em;
+}
+
+.left,
+.figure-left {
+	float:left; margin:.5em 1em .5em 0;
+}
+
+	.figure-left p,
+	.figure-right p,
+	.figure p {
+		padding:.5em 0;
+		font-style:italic;
+	}
+
+a img {
+	padding-bottom:2px;
+	border:0; border-bottom:4px double #abd1ed;
+}
+
+	a:hover img,
+	a:active img {
+		border-bottom:4px double #365f91;
+	}
+
+
+ 	/* else */
+
+hr {
+	clear:both; margin:3em 0;
+	height:2px;
+	border:0;
+	background-color:#ddd;
+	color:#fff;
+}
+
+
+	/* blocks */
+
+.important,
+.warning,
+.positive,
+.negative,
+.download {
+	margin-bottom:1em;
+	padding:.66em 1em;
+}
+
+	ul.important,
+	ol.important,
+	ul.warning,
+	ol.warning,
+	ul.positive,
+	ol.positive,
+	ul.negative,
+	ol.negative {
+		padding-left:2.3em;
+	}
+	
+	.important :last-child,
+	.warning :last-child,
+	.positive :last-child,
+	.negative :last-child {
+		margin-bottom:0;
+	}
+
+.important {
+	border:1px solid #e4e4e4;
+	background-color:#f4f4f4;
+}
+
+.warning {
+	border:1px solid #ffee99;
+	background-color:#fff8dd;
+}
+
+.positive {
+	border:1px solid #cceba1;
+	background-color:#eaf7d8;
+}
+
+.negative {
+	border:1px solid #f99;
+	background-color:#fdd;
+}
+
+.download {
+	border:1px solid #abd1ed;
+	background-color:#e3f0f9;
+	text-align:center;
+}
+
+	.download:first-line {
+		font-size:140%;
+	}
+
+
+	/* gallery */
+
+.gallery {
+	padding:0; overflow:hidden; /* auto-clearing */
+	list-style-type:none;
+}
+
+	.gallery li {
+		float:left; margin:0 .5em .5em 0
+	}
+
+
+	/* forms */
+		
+		/* general */
+
+fieldset {
+	margin-bottom:2em;
+	padding:1em 1em 0;
+}
+
+legend {
+	font-family:Cambria, Georgia, "New York CE", utopia, serif; color:#4F81BD; font-size:18px; font-weight:bold;
+}
+
+input[type=text],
+input[type=password],
+input[type=url],
+input[type=email],
+textarea {
+	width:200px; padding:2px 3px;
+	font-size:inherit; font-family:inherit;
+}
+
+textarea {
+	width:622px; height:7em;
+}
+
+input[type=radio] {
+	margin-left:2ex;
+}
+
+	label:first-of-type input[type=radio] {
+		margin-left:0;
+	}
+
+form label.req:after,
+form .label.req:after {
+	content:'*';
+}
+
+form .info {
+	font-size:92%; color:#888;
+}
+
+	form .error {
+		color:red;
+	}
+
+		/* div-layout specific */
+
+form > div,
+form > fieldset > div {
+	margin-bottom:1.5em;
+}
+
+	form div label {
+		_display:block;
+	}
+
+	form div > label ~ input,
+	form div > label ~ textarea {
+		display:block; margin:0.5em 0 0.5em;
+	}
+
+	form div > label ~ input[type=checkbox] {
+		display:inline;
+	}
+	
+	form div .label {
+		display:block; margin-bottom:0.5em;
+		font-weight:normal;
+	}
+	
+	form div > .info {}
+		
+		form div > .info:before {
+			content:'— ';
+		}
+
+		/* table-layout-specific */
+
+form table th,
+form table td {
+	border:0;
+}
+
+form table th {
+	padding-right:1em;
+	vertical-align:top;
+	background-color:transparent;
+}
+
+form table textarea {
+	width:400px;
+}
+
+form td > .info {
+	margin-left:0.5em;
+}

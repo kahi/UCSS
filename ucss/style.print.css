@@ -1,0 +1,158 @@
+/*
+CSS Document
+############
+
+Media: print
+*/
+
+
+	/* hide some elements */
+
+a#to-top, .bc,
+form,
+.noprint {
+	display:none;}
+
+
+	/* main */
+
+body {
+	font-family:Cambria, Georgia, Calibri, Arial, Helvetica, sans-serif; color:#222; font-size:92%;}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family:Cambria, Georgia, "New York CE", utopia, serif; color:#333; line-height:1;}
+
+h1, h2, h3 {
+	clear:both;}
+
+a {
+	color:inherit;}
+
+a.anchor {
+	text-decoration:none;}
+
+
+	/* lists */
+
+dl dt {
+	margin:.5em 0 0 0;
+	font-weight:bold; font-style:italic; }
+
+dl dd {
+	margin:0 0 .5em 3em;}
+
+
+	/* quotes */
+
+blockquote, q {
+	color:#333; font-style:italic;}
+
+blockquote {
+	margin:2em 0;
+	padding-left:2em;}
+
+cite {
+	font-style:italic;}
+
+blockquote + p cite:only-child {
+	display:block; margin:-1em 1em 2em 2em;
+	text-align:right;}
+
+	blockquote + p cite:only-child:before {
+		content:'— '}
+
+
+	/* code */
+
+code {
+	padding:1px;
+	border:1px dotted #888;
+	font-family:monospace;}
+
+pre code {
+	display:block;
+	padding:.5em;
+	border:1px dotted #888;
+	font-size:83%;}
+
+
+	/* tables */
+
+table {
+	border-collapse:collapse;}
+
+	th,
+	td {
+		padding:3px .5em;
+		border:1px solid #ddd;
+		text-align:left;}
+
+	th,
+	tfoot td {
+		background-color:#eee;
+		font-weight:bold;}
+
+
+ 	/* images */
+
+.right,
+.figure-right {
+	float:right; margin:.5em 0 .5em 1em;}
+
+.left,
+.figure-left {
+	float:left; margin:.5em 1em .5em 0;}
+
+	.figure-left p,
+	.figure-right p,
+	.figure p {
+		padding:.5em 0;
+		font-style:italic;}
+
+img {
+	padding:2px;
+	border:1px solid #aaa;}
+
+
+ 	/* else */
+
+hr {
+	clear:both; margin:3em 0;
+	height:2px;
+	border:0;
+	background-color:#ddd;
+	color:#fff;}
+
+
+	/* blocks */
+
+p.important,
+div.important,
+.warning,
+.positive,
+.negative,
+.download {
+	padding:.5em}
+
+.important {
+	padding-top:.5em; padding-bottom:.5em; /* eg. ul.important */
+	border-left:3px solid #444;}
+
+.warning {
+	border-left:3px solid #ffee99;}
+
+.positive {
+	border-left:3px solid #6a1;}
+
+.negative {
+	border-left:3px solid #f00;}
+
+
+	/* gallery */
+
+.gallery {
+	padding:0; overflow:hidden; /* auto-clearing */
+	list-style-type:none;}
+
+	.gallery li {
+		float:left; margin:0 .5em .5em 0}
