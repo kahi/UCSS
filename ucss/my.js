@@ -35,7 +35,8 @@
                 
                 // The heading, its level and unique id
                 var heading = $(this);
-                var currentLevel = parseInt(heading[0].nodeName.substr(1),10);                                                  
+                var currentLevel = parseInt(heading[0].nodeName.substr(1),10);
+                // TODO: Improve regexp to sanitize URLs properly                                                  
                 var id = 'toc-' + (heading.text().replace(/ /g, '-').toLowerCase()); // + '-'  + currentLevel + '-' + i;
                 heading.attr('id', id);
                                 
@@ -45,25 +46,31 @@
                 }
                 
                 // The list item
-                var li = $(document.createElement('li'));
-                ol.append(li);
+                if (currentLevel <= OutlineCreator.options.endLevel) {
+                    var li = $(document.createElement('li'));
+                    ol.append(li);
+                }
                                 
                 // The link within the list item
                 var a = $(document.createElement('a'));
                 a.attr('href', '#' + id);
                 a.text(heading.text());                
-                li.append(a);
+                if( currentLevel <= OutlineCreator.options.endLevel ) {
+                    li.append(a);
+                }
 
-                // If we should go deeper in the headings structure
-                if( currentLevel < OutlineCreator.options.endLevel ){
-                                                  
-                    // Find all current level+1 headings between this heading and the following of the same level
-                    var nextHeadings = heading.nextUntil('h' + currentLevel, 'h' + (currentLevel + 1));
-                    // If there are some create the outline for them
-                    if (nextHeadings.length) {
-                        li.append(OutlineCreator.createOutline(nextHeadings));
+                // Nesting:
+                // Find all current level+1 headings between this heading and the following of the same level
+                var nextHeadings = heading.nextUntil('h' + currentLevel, 'h' + (currentLevel + 1));
+                // If there are some create the outline for them
+                if (nextHeadings.length) {
+                    var nestedOutline = OutlineCreator.createOutline(nextHeadings);
+                    
+                    if (currentLevel <= OutlineCreator.options.endLevel && nestedOutline.children().size() !== 0 ) {
+                        li.append( nestedOutline );
                     }
-                } // /if currentLevel < endLevel
+                }
+                
             }); // /heading.each
 
             return ol;
