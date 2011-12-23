@@ -3,9 +3,89 @@
 
 //@todo maybe add something like @import jq.js here - to load jQ only if it's needed (by settings) - but how?
 
+;
+(function($){
+                                               
+    /**
+     * Based on a part of the Sleek-PHP framework
+     * Adapted by: Ondrej Slamecka, www.slamecka.cz         
+     * http://code.google.com/p/sleek-php/source/browse/trunk/Sites/SleekBase/Modules/Base/JS/jQuery.generateDocumentOutline.js
+     */
+    $.fn.createDocumentOutline = function (options) {               
+        
+        // Referring to this object
+        OutlineCreator = this;
+        
+        /* --- OPTIONS --- */
+        
+        this.defaultoptions = {
+            placing : $('#toc'), // After which element will the table of contents be placed
+            startLevel : 2, // First level of headers in the table
+            endLevel : 2 // Last included level of headers
+        };
+        
+        /* --- METHODS --- */
+        
+        this.createOutline = function (headings) {
+                               
+            var ol = $(document.createElement('ol'));
+            
+            // Go trough the each selected heading
+            headings.each(function (i) {
+                
+                // The heading, its level and unique id
+                var heading = $(this);
+                var currentLevel = parseInt(heading[0].nodeName.substr(1),10);                                                  
+                var id = 'toc-' + (heading.text().replace(/ /g, '-').toLowerCase()); // + '-'  + currentLevel + '-' + i;
+                heading.attr('id', id);
+                                
+                if (currentLevel === OutlineCreator.options.startLevel) {
+                    // TODO: Better set id #toc-table and change CSS (?) 
+                    ol.addClass('important'); 
+                }
+                
+                // The list item
+                var li = $(document.createElement('li'));
+                ol.append(li);
+                                
+                // The link within the list item
+                var a = $(document.createElement('a'));
+                a.attr('href', '#' + id);
+                a.text(heading.text());                
+                li.append(a);
 
+                // If we should go deeper in the headings structure
+                if( currentLevel < OutlineCreator.options.endLevel ){
+                                                  
+                    // Find all current level+1 headings between this heading and the following of the same level
+                    var nextHeadings = heading.nextUntil('h' + currentLevel, 'h' + (currentLevel + 1));
+                    // If there are some create the outline for them
+                    if (nextHeadings.length) {
+                        li.append(OutlineCreator.createOutline(nextHeadings));
+                    }
+                } // /if currentLevel < endLevel
+            }); // /heading.each
+
+            return ol;
+        };
+        
+        /* --- CONSTRUCTOR --- */
+        
+        this.options = $.extend({}, this.defaultoptions, options);        
+        
+        var toc = this.createOutline($('h'+this.options.startLevel));
+        $(this.options.placing).after(toc);
+    };
+})(jQuery);
 
 $(document).ready(function(){
+	
+	if (kucss_autotoc) {
+        $().createDocumentOutline({
+            startLevel: 2, 
+            endLevel: 2
+        });
+    }
 	
 	
 	if (kucss_autoanchors || kucss_breadcrumbs) {
